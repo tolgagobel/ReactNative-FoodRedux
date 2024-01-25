@@ -17,8 +17,12 @@ export default function App() {
     function DrawerNavigation() {
         return (
             <Drawer.Navigator>
-                <Drawer.Screen options={({ headerTitle: 'Tüm Kategoriler' })} name="Category" component={CategoryScreen} />
-                <Drawer.Screen name="Favorites" component={Favorites} />
+                <Drawer.Screen options={({ headerTitle: 'Tüm Kategoriler',title:'Kategoriler',drawerIcon:()=> (
+                    <AntDesign name='menuunfold' size={20}/>
+                ) })} name="Category" component={CategoryScreen} />
+                <Drawer.Screen options={({headerTitle:'Favoriler',title:'Favoriler',drawerIcon:() => (
+                    <AntDesign name='staro' size={20}/>
+                )})} name="Favorites" component={Favorites} />
             </Drawer.Navigator>
         );
     }
