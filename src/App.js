@@ -9,6 +9,9 @@ import FoodScreen from './screens/FoodScreen'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Favorites from './screens/Favorites'
+import { Provider } from 'react-redux'
+import store from './store/redux/store'
+
 
 export default function App() {
     const Stack = createNativeStackNavigator()
@@ -17,33 +20,39 @@ export default function App() {
     function DrawerNavigation() {
         return (
             <Drawer.Navigator>
-                <Drawer.Screen options={({ headerTitle: 'Tüm Kategoriler',title:'Kategoriler',drawerIcon:()=> (
-                    <AntDesign name='menuunfold' size={20}/>
-                ) })} name="Category" component={CategoryScreen} />
-                <Drawer.Screen options={({headerTitle:'Favoriler',title:'Favoriler',drawerIcon:() => (
-                    <AntDesign name='staro' size={20}/>
-                )})} name="Favorites" component={Favorites} />
+                <Drawer.Screen options={({
+                    headerTitle: 'Tüm Kategoriler', title: 'Kategoriler', drawerIcon: () => (
+                        <AntDesign name='menuunfold' size={20} />
+                    )
+                })} name="Category" component={CategoryScreen} />
+                <Drawer.Screen options={({
+                    headerTitle: 'Favoriler', title: 'Favoriler', drawerIcon: () => (
+                        <AntDesign name='staro' size={20} />
+                    )
+                })} name="Favorites" component={Favorites} />
             </Drawer.Navigator>
         );
     }
 
     return (
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{ contentStyle: { backgroundColor: '#fff' } }}>
-                <Stack.Screen options={{headerShown:false}} name='Drawer' component={DrawerNavigation} />
-                <Stack.Screen name='FoodOverview' component={FoodOverviewScreen} />
-                <Stack.Screen
-                    options={{
-                        headerRight: () => (
-                            <TouchableOpacity>
-                                <AntDesign name="staro" size={20} />
-                            </TouchableOpacity>
-                        ),
-                    }}
-                    name='Food'
-                    component={FoodScreen}
-                />
-            </Stack.Navigator>
+            <Provider store={store}>
+                <Stack.Navigator screenOptions={{ contentStyle: { backgroundColor: '#fff' } }}>
+                    <Stack.Screen options={{ headerShown: false }} name='Drawer' component={DrawerNavigation} />
+                    <Stack.Screen name='FoodOverview' component={FoodOverviewScreen} />
+                    <Stack.Screen
+                        options={{
+                            headerRight: () => (
+                                <TouchableOpacity>
+                                    <AntDesign name="staro" size={20} />
+                                </TouchableOpacity>
+                            ),
+                        }}
+                        name='Food'
+                        component={FoodScreen}
+                    />
+                </Stack.Navigator>
+            </Provider>
         </NavigationContainer>
     )
 }
