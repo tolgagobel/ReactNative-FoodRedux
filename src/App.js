@@ -40,16 +40,7 @@ export default function App() {
                 <Stack.Navigator screenOptions={{ contentStyle: { backgroundColor: '#fff' } }}>
                     <Stack.Screen options={{ headerShown: false }} name='Drawer' component={DrawerNavigation} />
                     <Stack.Screen name='FoodOverview' component={FoodOverviewScreen} />
-                    <Stack.Screen
-                        options={{
-                            headerRight: () => (
-                                <TouchableOpacity>
-                                    <AntDesign name="staro" size={20} />
-                                </TouchableOpacity>
-                            ),
-                        }}
-                        name='Food'
-                        component={FoodScreen}
+                    <Stack.Screen name='Food' component={FoodScreen}
                     />
                 </Stack.Navigator>
             </Provider>
